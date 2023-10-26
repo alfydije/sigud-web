@@ -13,7 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
+// Superadmin //
+Route::get('/admin/jenisbarang', function () {
+    return view('Jenis_Barang/index');
+});
 
 Route::get('/admin', function () {
     return view('Superadmin/index');
@@ -23,3 +26,5 @@ Route::get('/admin', function () {
 Route::get('/operator', function () {
     return view('Operator/index');
 });
+
+
