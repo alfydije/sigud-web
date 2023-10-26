@@ -5,30 +5,30 @@
 <li class="nav-item">
     <a class="d-flex align-items-center" href="#"><i data-feather="database"></i><span class="menu-title text-truncate" data-i18n="Master Barang">Master Barang</span></a>
     <ul class="menu-content">
-        <li class="nav-item {{ request()->routeIs('storages.report-stock.fs*') ? 'active' : '' }}">
-            <a class="d-flex align-items-center" href="{{ url('storages/report-stock/fsn/-/-/-') }}">
+        <li class="nav-item {{ request()->routeIs('/admin/jenisbarang') ? 'active' : '' }}">
+            <a class="d-flex align-items-center" href="{{ url('/admin/jenisbarang') }}">
                 <i class="far fa-circle"></i> <!-- Ini adalah ikon berbentuk lingkaran -->
                 <span class="menu-title text-truncate" data-i18n="Jenis">Jenis</span>
             </a>
         </li>
-        <li class="nav-item {{ request()->routeIs('storages.report-stock.fs*') ? 'active' : '' }}">
+        {{-- <li class="nav-item {{ request()->routeIs('storages.report-stock.fs*') ? 'active' : '' }}">
             <a class="d-flex align-items-center" href="{{ url('storages/report-stock/fsn/-/-/-') }}">
                 <i class="far fa-circle"></i> <!-- Ini adalah ikon berbentuk lingkaran -->
                 <span class="menu-title text-truncate" data-i18n="Satuan">Satuan</span>
             </a>
-        </li>
-        <li class="nav-item {{ request()->routeIs('storages.report-stock.fs*') ? 'active' : '' }}">
+        </li> --}}
+        {{-- <li class="nav-item {{ request()->routeIs('storages.report-stock.fs*') ? 'active' : '' }}">
             <a class="d-flex align-items-center" href="{{ url('storages/report-stock/fsn/-/-/-') }}">
                 <i class="far fa-circle"></i> <!-- Ini adalah ikon berbentuk lingkaran -->
                 <span class="menu-title text-truncate" data-i18n="Merk">Merk</span>
             </a>
-        </li>
-        <li class="nav-item {{ request()->routeIs('storages.report-stock.fs*') ? 'active' : '' }}">
+        </li> --}}
+        {{-- <li class="nav-item {{ request()->routeIs('storages.report-stock.fs*') ? 'active' : '' }}">
             <a class="d-flex align-items-center" href="{{ url('storages/report-stock/fsn/-/-/-') }}">
                 <i class="far fa-circle"></i> <!-- Ini adalah ikon berbentuk lingkaran -->
                 <span class="menu-title text-truncate" data-i18n="Barang">Barang</span>
             </a>
-        </li>
+        </li> --}}
     </ul>
 </li>
 <li class="nav-item">
@@ -94,7 +94,7 @@
         <li class="nav-item {{ request()->routeIs('storages.report-stock.fs*') ? 'active' : '' }}">
             <a class="d-flex align-items-center" href="{{ url('storages/report-stock/fsn/-/-/-') }}">
                 <i class="far fa-circle"></i> <!-- Ini adalah ikon berbentuk lingkaran -->
-                <span class="menu-title text-truncate" data-i18n="Web">Web</span>
+                <span class="menu-title text-truncate" data-i18n="Barang Masuk">Barang Masuk</span>
             </a>
         </li>
     </ul>
