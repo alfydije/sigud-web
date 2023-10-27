@@ -14,13 +14,22 @@ use Illuminate\Support\Facades\Route;
 */
 
 // Superadmin //
-Route::get('/admin/jenisbarang', function () {
-    return view('Jenis_Barang/index');
-});
-
 Route::get('/admin', function () {
     return view('Superadmin/index');
 });
+Route::get('/admin/brand', function () {
+    return view('Master_Data/Brand/index');
+});
+Route::get('/admin/brand/create', function () {
+    return view('Master_Data/Brand/create');
+});
+Route::get('/admin/pengguna', function () {
+    return view('Master_Data/pengguna/index');
+});
+Route::get('/admin/pengguna/create', function () {
+    return view('Master_Data/pengguna/create');
+});
+
 
 
 Route::get('/operator', function () {

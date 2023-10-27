@@ -1,14 +1,20 @@
 @extends('layout.header')
 
 @section('menu')
-<li class="nav-item {{ request()->is('storages/dashboard') ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ url('storages/dashboard') }}"><i data-feather="home"></i><span class="menu-title text-truncate" data-i18n="Dashboard">Dashboard</span></a></li>
+<li class="nav-item {{ request()->is('/admin') ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ url('/admin') }}"><i data-feather="home"></i><span class="menu-title text-truncate" data-i18n="Dashboard">Dashboard</span></a></li>
 <li class="nav-item">
-    <a class="d-flex align-items-center" href="#"><i data-feather="database"></i><span class="menu-title text-truncate" data-i18n="Master Barang">Master Barang</span></a>
+    <a class="d-flex align-items-center" href="#"><i data-feather="database"></i><span class="menu-title text-truncate" data-i18n="Master Data">Master Data</span></a>
     <ul class="menu-content">
-        <li class="nav-item {{ request()->routeIs('/admin/jenisbarang') ? 'active' : '' }}">
-            <a class="d-flex align-items-center" href="{{ url('/admin/jenisbarang') }}">
+        <li class="nav-item {{ request()->routeIs('/admin/brand') ? 'active' : '' }}">
+            <a class="d-flex align-items-center" href="{{ url('/admin/brand') }}">
                 <i class="far fa-circle"></i> <!-- Ini adalah ikon berbentuk lingkaran -->
-                <span class="menu-title text-truncate" data-i18n="Jenis">Jenis</span>
+                <span class="menu-title text-truncate" data-i18n="Jenis">Brand</span>
+            </a>
+        </li>
+        <li class="nav-item {{ request()->routeIs('/admin/pengguna') ? 'active' : '' }}">
+            <a class="d-flex align-items-center" href="{{ url('/admin/pengguna') }}">
+                <i class="far fa-circle"></i> <!-- Ini adalah ikon berbentuk lingkaran -->
+                <span class="menu-title text-truncate" data-i18n="Jenis">Pengguna</span>
             </a>
         </li>
         {{-- <li class="nav-item {{ request()->routeIs('storages.report-stock.fs*') ? 'active' : '' }}">
@@ -30,9 +36,6 @@
             </a>
         </li> --}}
     </ul>
-</li>
-<li class="nav-item">
-    <a class="d-flex align-items-center" href="#"><i data-feather="user"></i><span class="menu-title text-truncate" data-i18n="Customer">Customer</span></a>
 </li>
 <li class="nav-item">
     <a class="d-flex align-items-center" href="#"><i data-feather="refresh-cw"></i><span class="menu-title text-truncate" data-i18n="Transaksi">Transaksi</span></a>

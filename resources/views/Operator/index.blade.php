@@ -447,31 +447,31 @@
 
         // load data
 
-        const getDashboard = async function () {
+        // const getDashboard = async function () {
 
-            $('.loader').html(`
-                <div class="text-primary">
-                    <div class="spinner-border spinner-border-sm" role="status"></div>
-                </div>
-            `)
+        //     $('.loader').html(`
+        //         <div class="text-primary">
+        //             <div class="spinner-border spinner-border-sm" role="status"></div>
+        //         </div>
+        //     `)
 
-            const response = await $.ajax({
-                method: 'GET',
-                dataType: 'json',
-                success:function (response) {
-                    console.log(response)
-                    setTimeout(() => {
-                        loadDashboard(response)
-                    }, 300);
-                }
-            }).catch((err) => {
-                Swal.fire({
-                    title: 'Terjadi kesalahan!',
-                    text: 'Server Error',
-                    icon: 'error'
-                })
-            })
-        }
+        //     const response = await $.ajax({
+        //         method: 'GET',
+        //         dataType: 'json',
+        //         success:function (response) {
+        //             console.log(response)
+        //             setTimeout(() => {
+        //                 loadDashboard(response)
+        //             }, 300);
+        //         }
+        //     }).catch((err) => {
+        //         Swal.fire({
+        //             title: 'Terjadi kesalahan!',
+        //             text: 'Server Error',
+        //             icon: 'error'
+        //         })
+        //     })
+        // }
 
         getDashboard()
 
