@@ -57,20 +57,20 @@
 <li class="nav-item">
     <a class="d-flex align-items-center" href="#"><i data-feather="folder"></i><span class="menu-title text-truncate" data-i18n="Laporan">Laporan</span></a>
     <ul class="menu-content">
-        <li class="nav-item {{ request()->routeIs('storages.report-stock.fs*') ? 'active' : '' }}">
-            <a class="d-flex align-items-center" href="{{ url('storages/report-stock/fsn/-/-/-') }}">
+        <li class="nav-item {{ request()->routeIs('/admin/laporan/lap_barang_masuk') ? 'active' : '' }}">
+            <a class="d-flex align-items-center" href="{{ url('/admin/laporan/lap_barang_masuk') }}">
                 <i class="far fa-circle"></i> <!-- Ini adalah ikon berbentuk lingkaran -->
                 <span class="menu-title text-truncate" data-i18n="Laporan Barang Masuk">Lap Barang Masuk</span>
             </a>
         </li>
-        <li class="nav-item {{ request()->routeIs('storages.report-stock.fs*') ? 'active' : '' }}">
-            <a class="d-flex align-items-center" href="{{ url('storages/report-stock/fsn/-/-/-') }}">
+        <li class="nav-item {{ request()->routeIs('/admin/laporan/lap_barang_keluar') ? 'active' : '' }}">
+            <a class="d-flex align-items-center" href="{{ url('/admin/laporan/lap_barang_keluar') }}">
                 <i class="far fa-circle"></i> <!-- Ini adalah ikon berbentuk lingkaran -->
-                <span class="menu-title text-truncate" data-i18n="Laporan Barang Masuk">Lap Barang Masuk</span>
+                <span class="menu-title text-truncate" data-i18n="Laporan Barang Keluar">Lap Barang Keluar</span>
             </a>
         </li>
-        <li class="nav-item {{ request()->routeIs('storages.report-stock.fs*') ? 'active' : '' }}">
-            <a class="d-flex align-items-center" href="{{ url('storages/report-stock/fsn/-/-/-') }}">
+        <li class="nav-item {{ request()->routeIs('/admin/laporan') ? 'active' : '' }}">
+            <a class="d-flex align-items-center" href="{{ url('/admin/laporan') }}">
                 <i class="far fa-circle"></i> <!-- Ini adalah ikon berbentuk lingkaran -->
                 <span class="menu-title text-truncate" data-i18n="Laporan Stok Barang">Lap Stok Barang</span>
             </a>

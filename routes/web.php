@@ -26,6 +26,19 @@ Route::get('/admin/brand/create', function () {
 Route::get('/admin/pengguna', function () {
     return view('Master_Data/pengguna/index');
 });
+
+Route::get('/admin/laporan/lap_barang_masuk', function () {
+    return view('Laporan/lap_barang_masuk/index');
+});
+
+Route::get('/admin/laporan/lap_barang_keluar', function () {
+    return view('Laporan/lap_barang_keluar/index');
+});
+
+Route::get('/admin/laporan', function () {
+    return view('Laporan/lap_stok_barang/index');
+});
+
 Route::get('/admin/pengguna/create', function () {
     return view('Master_Data/pengguna/create');
 });
