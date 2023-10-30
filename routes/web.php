@@ -20,14 +20,17 @@ Route::get('/admin', function () {
 Route::get('/admin/brand', function () {
     return view('Master_Data/Brand/index');
 });
-Route::get('/admin/brand/create', function () {
-    return view('Master_Data/Brand/create');
+Route::get('/admin/kategori', function () {
+    return view('Master_Data/Kategori/index');
 });
 Route::get('/admin/pengguna', function () {
     return view('Master_Data/pengguna/index');
 });
 Route::get('/admin/pengguna/create', function () {
     return view('Master_Data/pengguna/create');
+});
+Route::get('/admin/laporanbarangkeluar', function () {
+    return view('Laporan/LapBarangKeluar/index');
 });
 
 

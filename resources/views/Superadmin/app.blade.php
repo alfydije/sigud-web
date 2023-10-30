@@ -2,6 +2,7 @@
 
 @section('menu')
 <li class="nav-item {{ request()->is('/admin') ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ url('/admin') }}"><i data-feather="home"></i><span class="menu-title text-truncate" data-i18n="Dashboard">Dashboard</span></a></li>
+<li class="nav-item {{ request()->is('/admin') ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ url('/admin') }}"><i data-feather="list"></i><span class="menu-title text-truncate" data-i18n="Permintaan">Permintaan</span></a></li>
 <li class="nav-item">
     <a class="d-flex align-items-center" href="#"><i data-feather="database"></i><span class="menu-title text-truncate" data-i18n="Master Data">Master Data</span></a>
     <ul class="menu-content">
@@ -9,6 +10,12 @@
             <a class="d-flex align-items-center" href="{{ url('/admin/brand') }}">
                 <i class="far fa-circle"></i> <!-- Ini adalah ikon berbentuk lingkaran -->
                 <span class="menu-title text-truncate" data-i18n="Jenis">Brand</span>
+            </a>
+        </li>
+        <li class="nav-item {{ request()->routeIs('/admin/kategori') ? 'active' : '' }}">
+            <a class="d-flex align-items-center" href="{{ url('/admin/kategori') }}">
+                <i class="far fa-circle"></i> <!-- Ini adalah ikon berbentuk lingkaran -->
+                <span class="menu-title text-truncate" data-i18n="Jenis">Kategori</span>
             </a>
         </li>
         <li class="nav-item {{ request()->routeIs('/admin/pengguna') ? 'active' : '' }}">
@@ -57,16 +64,16 @@
 <li class="nav-item">
     <a class="d-flex align-items-center" href="#"><i data-feather="folder"></i><span class="menu-title text-truncate" data-i18n="Laporan">Laporan</span></a>
     <ul class="menu-content">
-        <li class="nav-item {{ request()->routeIs('storages.report-stock.fs*') ? 'active' : '' }}">
-            <a class="d-flex align-items-center" href="{{ url('storages/report-stock/fsn/-/-/-') }}">
+        <li class="nav-item {{ request()->routeIs('/admin/laporanbarangmasuk') ? 'active' : '' }}">
+            <a class="d-flex align-items-center" href="{{ url('/admin/laporanbarangmasuk') }}">
                 <i class="far fa-circle"></i> <!-- Ini adalah ikon berbentuk lingkaran -->
                 <span class="menu-title text-truncate" data-i18n="Laporan Barang Masuk">Lap Barang Masuk</span>
             </a>
         </li>
-        <li class="nav-item {{ request()->routeIs('storages.report-stock.fs*') ? 'active' : '' }}">
-            <a class="d-flex align-items-center" href="{{ url('storages/report-stock/fsn/-/-/-') }}">
+        <li class="nav-item {{ request()->routeIs('admin/laporanbarangkeluar') ? 'active' : '' }}">
+            <a class="d-flex align-items-center" href="{{ url('admin/laporanbarangkeluar') }}">
                 <i class="far fa-circle"></i> <!-- Ini adalah ikon berbentuk lingkaran -->
-                <span class="menu-title text-truncate" data-i18n="Laporan Barang Masuk">Lap Barang Masuk</span>
+                <span class="menu-title text-truncate" data-i18n="Laporan Barang Masuk">Lap Barang Keluar</span>
             </a>
         </li>
         <li class="nav-item {{ request()->routeIs('storages.report-stock.fs*') ? 'active' : '' }}">
@@ -79,28 +86,6 @@
 </li>
 <li class="navigation-header"><span data-i18n="Lainnya">Lainnya</span><i data-feather="more-horizontal"></i></li>
 {{-- <li class="nav-item {{ request()->routeIs('storages.user.edit*') ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('storages.user.edit', Auth::id()) }}"><i data-feather="edit"></i><span class="menu-title text-truncate" data-i18n="Edit Profile">Edit Profile</span></a></li> --}}
-<li class="nav-item">
-    <a class="d-flex align-items-center" href="#"><i class="fas fa-cog"></i><span class="menu-title text-truncate" data-i18n="Settings">Settings</span></a>
-    <ul class="menu-content">
-        <li class="nav-item {{ request()->routeIs('storages.report-stock.fs*') ? 'active' : '' }}">
-            <a class="d-flex align-items-center" href="{{ url('storages/report-stock/fsn/-/-/-') }}">
-                <i class="far fa-circle"></i> <!-- Ini adalah ikon berbentuk lingkaran -->
-                <span class="menu-title text-truncate" data-i18n="Menu">Menu</span>
-            </a>
-        </li>
-        <li class="nav-item {{ request()->routeIs('storages.report-stock.fs*') ? 'active' : '' }}">
-            <a class="d-flex align-items-center" href="{{ url('storages/report-stock/fsn/-/-/-') }}">
-                <i class="far fa-circle"></i> <!-- Ini adalah ikon berbentuk lingkaran -->
-                <span class="menu-title text-truncate" data-i18n="User">User</span>
-            </a>
-        </li>
-        <li class="nav-item {{ request()->routeIs('storages.report-stock.fs*') ? 'active' : '' }}">
-            <a class="d-flex align-items-center" href="{{ url('storages/report-stock/fsn/-/-/-') }}">
-                <i class="far fa-circle"></i> <!-- Ini adalah ikon berbentuk lingkaran -->
-                <span class="menu-title text-truncate" data-i18n="Barang Masuk">Barang Masuk</span>
-            </a>
-        </li>
-    </ul>
-</li>
+    
 <li class="nav-item"><a class="d-flex align-items-center" href="#" id="logout-app"><i data-feather="log-out"></i><span class="menu-title text-truncate" data-i18n="Logout">Logout</span></a></li>
 @endsection
