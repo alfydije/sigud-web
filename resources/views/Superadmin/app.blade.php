@@ -2,7 +2,7 @@
 
 @section('menu')
 <li class="nav-item {{ request()->is('/admin') ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ url('/admin') }}"><i data-feather="home"></i><span class="menu-title text-truncate" data-i18n="Dashboard">Dashboard</span></a></li>
-<li class="nav-item {{ request()->is('/admin') ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ url('/admin') }}"><i data-feather="list"></i><span class="menu-title text-truncate" data-i18n="Permintaan">Permintaan</span></a></li>
+<li class="nav-item {{ request()->is('/admin/permintaan') ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ url('/admin/permintaan') }}"><i data-feather="list"></i><span class="menu-title text-truncate" data-i18n="Permintaan">Permintaan</span></a></li>
 <li class="nav-item">
     <a class="d-flex align-items-center" href="#"><i data-feather="database"></i><span class="menu-title text-truncate" data-i18n="Master Data">Master Data</span></a>
     <ul class="menu-content">
@@ -24,24 +24,6 @@
                 <span class="menu-title text-truncate" data-i18n="Jenis">Pengguna</span>
             </a>
         </li>
-        {{-- <li class="nav-item {{ request()->routeIs('storages.report-stock.fs*') ? 'active' : '' }}">
-            <a class="d-flex align-items-center" href="{{ url('storages/report-stock/fsn/-/-/-') }}">
-                <i class="far fa-circle"></i> <!-- Ini adalah ikon berbentuk lingkaran -->
-                <span class="menu-title text-truncate" data-i18n="Satuan">Satuan</span>
-            </a>
-        </li> --}}
-        {{-- <li class="nav-item {{ request()->routeIs('storages.report-stock.fs*') ? 'active' : '' }}">
-            <a class="d-flex align-items-center" href="{{ url('storages/report-stock/fsn/-/-/-') }}">
-                <i class="far fa-circle"></i> <!-- Ini adalah ikon berbentuk lingkaran -->
-                <span class="menu-title text-truncate" data-i18n="Merk">Merk</span>
-            </a>
-        </li> --}}
-        {{-- <li class="nav-item {{ request()->routeIs('storages.report-stock.fs*') ? 'active' : '' }}">
-            <a class="d-flex align-items-center" href="{{ url('storages/report-stock/fsn/-/-/-') }}">
-                <i class="far fa-circle"></i> <!-- Ini adalah ikon berbentuk lingkaran -->
-                <span class="menu-title text-truncate" data-i18n="Barang">Barang</span>
-            </a>
-        </li> --}}
     </ul>
 </li>
 <li class="nav-item">
@@ -88,4 +70,11 @@
 {{-- <li class="nav-item {{ request()->routeIs('storages.user.edit*') ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('storages.user.edit', Auth::id()) }}"><i data-feather="edit"></i><span class="menu-title text-truncate" data-i18n="Edit Profile">Edit Profile</span></a></li> --}}
     
 <li class="nav-item"><a class="d-flex align-items-center" href="#" id="logout-app"><i data-feather="log-out"></i><span class="menu-title text-truncate" data-i18n="Logout">Logout</span></a></li>
+<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br><br />
+<li class="nav-item">
+    <a class="d-flex align-items-center" href="#">
+        <img class="round" src="{{ asset('app-assets/images/portrait/small/avatar-s-11.jpg') }}" alt="avatar" height="40" width="40">
+        <span class="menu-title text-truncate" data-i18n="Superadmin">Superadmin</span>
+    </a>
+</li>
 @endsection

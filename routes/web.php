@@ -29,8 +29,11 @@ Route::get('/admin/pengguna', function () {
 Route::get('/admin/pengguna/create', function () {
     return view('Master_Data/pengguna/create');
 });
-Route::get('/admin/laporanbarangkeluar', function () {
-    return view('Laporan/LapBarangKeluar/index');
+Route::get('/admin/permintaan', function () {
+    return view('Permintaan/index');
+});
+Route::get('/admin/permintaan/view', function () {
+    return view('Permintaan/view');
 });
 
 
