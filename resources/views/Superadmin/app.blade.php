@@ -46,18 +46,12 @@
 <li class="nav-item">
     <a class="d-flex align-items-center" href="#"><i data-feather="folder"></i><span class="menu-title text-truncate" data-i18n="Laporan">Laporan</span></a>
     <ul class="menu-content">
-        <li class="nav-item {{ request()->routeIs('/admin/laporanbarangmasuk') ? 'active' : '' }}">
-            <a class="d-flex align-items-center" href="{{ url('/admin/laporanbarangmasuk') }}">
         <li class="nav-item {{ request()->routeIs('/admin/laporan/lap_barang_masuk') ? 'active' : '' }}">
             <a class="d-flex align-items-center" href="{{ url('/admin/laporan/lap_barang_masuk') }}">
                 <i class="far fa-circle"></i> <!-- Ini adalah ikon berbentuk lingkaran -->
                 <span class="menu-title text-truncate" data-i18n="Laporan Barang Masuk">Lap Barang Masuk</span>
             </a>
         </li>
-        <li class="nav-item {{ request()->routeIs('admin/laporanbarangkeluar') ? 'active' : '' }}">
-            <a class="d-flex align-items-center" href="{{ url('admin/laporanbarangkeluar') }}">
-                <i class="far fa-circle"></i> <!-- Ini adalah ikon berbentuk lingkaran -->
-                <span class="menu-title text-truncate" data-i18n="Laporan Barang Masuk">Lap Barang Keluar</span>
         <li class="nav-item {{ request()->routeIs('/admin/laporan/lap_barang_keluar') ? 'active' : '' }}">
             <a class="d-flex align-items-center" href="{{ url('/admin/laporan/lap_barang_keluar') }}">
                 <i class="far fa-circle"></i> <!-- Ini adalah ikon berbentuk lingkaran -->
@@ -80,7 +74,7 @@
 <li class="nav-item">
     <a class="d-flex align-items-center" href="#">
         <img class="round" src="{{ asset('app-assets/images/portrait/small/avatar-s-11.jpg') }}" alt="avatar" height="40" width="40">
-        <span class="menu-title text-truncate" data-i18n="Superadmin">Superadmin</span>
+        <span class="menu-title text-truncate" data-i18n="Superadmin"> Superadmin</span>
     </a>
 </li>
 @endsection

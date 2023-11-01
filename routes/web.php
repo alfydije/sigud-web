@@ -51,6 +51,7 @@ Route::get('/admin/permintaan/view', function () {
 
 
 
+
 Route::get('/operator', function () {
     return view('Operator/index');
 });
