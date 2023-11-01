@@ -1,5 +1,7 @@
 @extends('Superadmin.app')
 @section('content')
+
+
 <div class="content-header row">
     <div class="content-header-left col-md-9 col-12 mb-2">
         <div class="row breadcrumbs-top">
@@ -24,12 +26,12 @@
             <button id="print_button" class="btn-primary btn-sm mx-1">
                 <i class="fas fa-print"></i> Print
             </button>
-            <button id="filter_button" class="btn-success btn-sm mx-1">
+            {{-- <button id="filter_button" class="btn-success btn-sm mx-1">
                 <i class="fas fa-filter"></i> Filter
-            </button>
-            <button id="reset_button" class="btn-edit btn-sm mx-1">
+            </button> --}}
+            {{-- <button id="reset_button" class="btn-edit btn-sm mx-1">
                 <i class="fas fa-redo"></i> Reset
-            </button>
+            </button> --}}
             <button id="pdf_button" class="btn-danger btn-sm mx-1">
                 <i class="fas fa-file-pdf"></i> Pdf
             </button>
@@ -40,6 +42,8 @@
 <div class="table-responsive text-nowrap">
     <table class="table text-center">
         <thead>
+
+
             <tr>
                 <th class="text-center">No</th>
                 <th class="text-center">Tanggal Masuk</th>
@@ -85,19 +89,19 @@
 </div>
 
 <script>
-     document.addEventListener("DOMContentLoaded", function() {
-        // Mengambil referensi tombol print
-        var printButton = document.getElementById("print_button");
+    document.addEventListener("DOMContentLoaded", function() {
+       // Mengambil referensi tombol print
+       var printButton = document.getElementById("print_button");
 
-        // Menambahkan event listener ketika tombol print diklik
-        printButton.addEventListener("click", function() {
-            // Menampilkan konfirmasi sebelum mencetak
-            var isConfirmed = window.confirm("Apakah Anda yakin ingin mencetak laporan?");
-            if (isConfirmed) {
-                window.print(); // Mencetak jika pengguna mengonfirmasi
-            }
-        });
-    });
+       // Menambahkan event listener ketika tombol print diklik
+       printButton.addEventListener("click", function() {
+           // Menampilkan konfirmasi sebelum mencetak
+           var isConfirmed = window.confirm("Apakah Anda yakin ingin mencetak laporan?");
+           if (isConfirmed) {
+               window.print(); // Mencetak jika pengguna mengonfirmasi
+           }
+       });
+   });
 </script>
 
 

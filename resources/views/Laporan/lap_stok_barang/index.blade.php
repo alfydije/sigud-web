@@ -24,12 +24,12 @@
             <button id="print_button" class="btn-primary btn-sm mx-1">
                 <i class="fas fa-print"></i> Print
             </button>
-            <button id="filter_button" class="btn-success btn-sm mx-1">
+            {{-- <button id="filter_button" class="btn-success btn-sm mx-1">
                 <i class="fas fa-filter"></i> Filter
-            </button>
-            <button id="reset_button" class="btn-edit btn-sm mx-1">
+            </button> --}}
+            {{-- <button id="reset_button" class="btn-edit btn-sm mx-1">
                 <i class="fas fa-redo"></i> Reset
-            </button>
+            </button> --}}
             <button id="pdf_button" class="btn-danger btn-sm mx-1">
                 <i class="fas fa-file-pdf"></i> Pdf
             </button>
