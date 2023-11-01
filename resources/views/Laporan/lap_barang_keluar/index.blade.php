@@ -24,12 +24,12 @@
             <button id="print_button" class="btn-primary btn-sm mx-1">
                 <i class="fas fa-print"></i> Print
             </button>
-            {{-- <button id="filter_button" class="btn-success btn-sm mx-1">
+            <button id="filter_button" class="btn-success btn-sm mx-1">
                 <i class="fas fa-filter"></i> Filter
-            </button> --}}
-            {{-- <button id="reset_button" class="btn-edit btn-sm mx-1">
+            </button>
+            <button id="reset_button" class="btn-edit btn-sm mx-1">
                 <i class="fas fa-redo"></i> Reset
-            </button> --}}
+            </button>
             <button id="pdf_button" class="btn-danger btn-sm mx-1">
                 <i class="fas fa-file-pdf"></i> Pdf
             </button>
@@ -93,7 +93,6 @@
      document.addEventListener("DOMContentLoaded", function() {
         // Mengambil referensi tombol print
         var printButton = document.getElementById("print_button");
-        var pdfButton = document.getElementById("pdf_button");
 
         // Menambahkan event listener ketika tombol print diklik
         printButton.addEventListener("click", function() {
@@ -103,34 +102,8 @@
                 window.print(); // Mencetak jika pengguna mengonfirmasi
             }
         });
-    
-
-        
-     // Menambahkan event listener ketika tombol PDF diklik
-     pdfButton.addEventListener("click", function () {
-            // Menampilkan konfirmasi sebelum membuat PDF
-            var isConfirmed = window.confirm("Apakah Anda yakin ingin membuat laporan dalam bentuk PDF?");
-            if (isConfirmed) {
-                createPDF(); // Membuat PDF jika pengguna mengonfirmasi
-            }
-        });
-
-        // Fungsi untuk membuat PDF
-        function createPDF() {
-            var doc = new jsPDF();
-            doc.text("Laporan Barang Keluar", 10, 10);
-            // Tambahkan konten PDF lainnya sesuai kebutuhan
-            // Misalnya, Anda dapat menambahkan isi tabel ke PDF di sini.
-
-            // Simpan PDF sebagai file atau tampilkan dalam jendela baru
-            // doc.save("nama-file.pdf"); // Simpan sebagai file
-            doc.output("dataurlnewwindow"); // Tampilkan dalam jendela baru
-
-              // Simpan PDF sebagai file atau tampilkan dalam jendela baru
-              doc.save("laporan-barang-keluar.pdf"); // Simpan sebagai file dengan nama
-            // doc.output("dataurlnewwindow"); // Tampilkan dalam jendela baru
-        }
     });
 </script>
+
 
 @endsection

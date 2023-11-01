@@ -42,11 +42,31 @@ Route::get('/admin/laporan', function () {
 Route::get('/admin/pengguna/create', function () {
     return view('Master_Data/pengguna/create');
 });
-Route::get('/admin/laporanbarangkeluar', function () {
-    return view('Laporan/LapBarangKeluar/index');
+Route::get('/admin/permintaan', function () {
+    return view('Permintaan/index');
+});
+Route::get('/admin/permintaan/view', function () {
+    return view('Permintaan/view');
+});
+
+Route::get('/', function () {
+    return view('login/index');
 });
 
 
+// Barang Masuk
+
+Route::get('/admin/barangmasuk', function () {
+    return view('transaksi/barangmasuk/index');
+});
+
+// Barang Kelaur
+
+Route::get('/admin/barangkeluar', function () {
+    return view('transaksi/barangkeluar/index');
+});
+
+//Operator
 
 Route::get('/operator', function () {
     return view('Operator/index');
