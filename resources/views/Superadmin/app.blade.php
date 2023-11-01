@@ -29,14 +29,14 @@
 <li class="nav-item">
     <a class="d-flex align-items-center" href="#"><i data-feather="refresh-cw"></i><span class="menu-title text-truncate" data-i18n="Transaksi">Transaksi</span></a>
     <ul class="menu-content">
-        <li class="nav-item {{ request()->routeIs('storages.report-stock.fs*') ? 'active' : '' }}">
-            <a class="d-flex align-items-center" href="{{ url('storages/report-stock/fsn/-/-/-') }}">
+        <li class="nav-item {{ request()->routeIs('/admin/barangmasuk') ? 'active' : '' }}">
+            <a class="d-flex align-items-center" href="{{ url('/admin/barangmasuk') }}">
                 <i class="far fa-circle"></i> <!-- Ini adalah ikon berbentuk lingkaran -->
                 <span class="menu-title text-truncate" data-i18n="Barang Masuk">Barang Masuk</span>
             </a>
         </li>
-        <li class="nav-item {{ request()->routeIs('storages.report-stock.fs*') ? 'active' : '' }}">
-            <a class="d-flex align-items-center" href="{{ url('storages/report-stock/fsn/-/-/-') }}">
+        <li class="nav-item {{ request()->routeIs('/admin/barangkeluar') ? 'active' : '' }}">
+            <a class="d-flex align-items-center" href="{{ url('/admin/barangkeluar') }}">
                 <i class="far fa-circle"></i> <!-- Ini adalah ikon berbentuk lingkaran -->
                 <span class="menu-title text-truncate" data-i18n="Barang Keluar">Barang Keluar</span>
             </a>

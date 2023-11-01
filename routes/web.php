@@ -49,7 +49,24 @@ Route::get('/admin/permintaan/view', function () {
     return view('Permintaan/view');
 });
 
+Route::get('/', function () {
+    return view('login/index');
+});
 
+
+// Barang Masuk
+
+Route::get('/admin/barangmasuk', function () {
+    return view('transaksi/barangmasuk/index');
+});
+
+// Barang Kelaur
+
+Route::get('/admin/barangkeluar', function () {
+    return view('transaksi/barangkeluar/index');
+});
+
+//Operator
 
 
 Route::get('/operator', function () {
