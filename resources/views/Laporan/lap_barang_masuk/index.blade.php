@@ -24,12 +24,6 @@
             <button id="print_button" class="btn-primary btn-sm mx-1">
                 <i class="fas fa-print"></i> Print
             </button>
-            <button id="filter_button" class="btn-success btn-sm mx-1">
-                <i class="fas fa-filter"></i> Filter
-            </button>
-            <button id="reset_button" class="btn-edit btn-sm mx-1">
-                <i class="fas fa-redo"></i> Reset
-            </button>
             <button id="pdf_button" class="btn-danger btn-sm mx-1">
                 <i class="fas fa-file-pdf"></i> Pdf
             </button>
@@ -85,20 +79,57 @@
 </div>
 
 <script>
-     document.addEventListener("DOMContentLoaded", function() {
-        // Mengambil referensi tombol print
-        var printButton = document.getElementById("print_button");
+    document.addEventListener("DOMContentLoaded", function() {
+       // Mengambil referensi tombol print
+       var printButton = document.getElementById("print_button");
 
-        // Menambahkan event listener ketika tombol print diklik
-        printButton.addEventListener("click", function() {
-            // Menampilkan konfirmasi sebelum mencetak
-            var isConfirmed = window.confirm("Apakah Anda yakin ingin mencetak laporan?");
-            if (isConfirmed) {
-                window.print(); // Mencetak jika pengguna mengonfirmasi
-            }
-        });
-    });
+       // Menambahkan event listener ketika tombol print diklik
+       printButton.addEventListener("click", function() {
+           Swal.fire({
+               title: 'Konfirmasi Cetak',
+               text: 'Apakah Anda yakin ingin mencetak laporan?',
+               icon: 'warning',
+               showCancelButton: true,
+               confirmButtonText: 'Cetak',
+               customClass: {
+                   confirmButton: 'btn btn-danger',
+                   cancelButton: 'btn btn-secondary ms-1'
+               },
+               buttonsStyling: false
+           }).then(function (result) {
+               if (result.isConfirmed) {
+                   window.print(); // Mencetak jika pengguna mengonfirmasi
+               }
+           });
+       });
+   });
+
+   document.addEventListener("DOMContentLoaded", function() {
+       // Mengambil referensi tombol print
+       var printButton = document.getElementById("pdf_button");
+
+       // Menambahkan event listener ketika tombol print diklik
+       printButton.addEventListener("click", function() {
+           Swal.fire({
+               title: 'Konfirmasi Cetak',
+               text: 'Apakah Anda yakin ingin mencetak laporan?',
+               icon: 'warning',
+               showCancelButton: true,
+               confirmButtonText: 'Cetak',
+               customClass: {
+                   confirmButton: 'btn btn-danger',
+                   cancelButton: 'btn btn-secondary ms-1'
+               },
+               buttonsStyling: false
+           }).then(function (result) {
+               if (result.isConfirmed) {
+                   window.print(); // Mencetak jika pengguna mengonfirmasi
+               }
+           });
+       });
+   });
 </script>
+
 
 
 @endsection
