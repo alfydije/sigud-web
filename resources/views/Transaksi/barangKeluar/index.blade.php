@@ -48,7 +48,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="modalTitle">Form Tambah Data Brand</h1> <!-- Judul modal dengan ID -->
+                <h1 class="modal-title fs-5" id="modalTitle">Form Tambah Data Barang Keluar</h1> <!-- Judul modal dengan ID -->
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -156,7 +156,7 @@ document.addEventListener("click", function (e) {
         document.getElementById("namaBarang").value = namaBarangValue;
 
         // Ubah teks judul modal
-        document.getElementById("modalTitle").textContent = "Edit Data Barang Masuk"; // Mengganti judul sesuai mode
+        document.getElementById("modalTitle").textContent = "Edit Data Barang Keluar"; // Mengganti judul sesuai mode
 
         // Tampilkan modal untuk pengeditan
         var modal = new bootstrap.Modal(document.getElementById("modaltambah"));
