@@ -20,16 +20,16 @@
         </div>
 
         <table class="table text-center">
-            <thead>
-                <tr>
-                    <th class="text-center">No</th>
-                    <th class="text-center">Nama Pengguna </th>
-                    <th class="text-center"> Password</th>
-                    <th class="text-center"> Role</th>
-                    <th class="text-center">Actions</th>
-                </tr>
-            </thead>
-            <tbody class="table-border-bottom-0">
+                <thead>
+                    <tr>
+                        <th class="text-center">No</th>
+                        <th class="text-center">Nama Pengguna</th>
+                        <th class="text-center">Password</th>
+                        <th class="text-center">Role</th>
+                        <th class="text-center">Action</th>
+                    </tr>
+                </thead>
+                <tbody class="table-border-bottom-0">
                     <tr>
                         <td class="text-center"><strong>1</strong></td>
                         <td class="text-center">Cindy</td>

@@ -68,7 +68,6 @@ Route::get('/admin/barangkeluar', function () {
 
 //Operator
 
-
 Route::get('/operator', function () {
     return view('Operator/index');
 });
