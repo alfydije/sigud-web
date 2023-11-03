@@ -62,6 +62,7 @@
             <a class="d-flex align-items-center" href="{{ url('/admin/laporan/lap_barang_keluar') }}">
                 <i class="far fa-circle"></i> <!-- Ini adalah ikon berbentuk lingkaran -->
                 <span class="menu-title text-truncate" data-i18n="Laporan Barang Keluar">Lap Barang Keluar</span>
+
             </a>
         </li>
         <li class="nav-item {{ request()->routeIs('/admin/laporan') ? 'active' : '' }}">
@@ -75,7 +76,7 @@
 <li class="navigation-header"><span data-i18n="Lainnya">Lainnya</span><i data-feather="more-horizontal"></i></li>
 {{-- <li class="nav-item {{ request()->routeIs('storages.user.edit*') ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('storages.user.edit', Auth::id()) }}"><i data-feather="edit"></i><span class="menu-title text-truncate" data-i18n="Edit Profile">Edit Profile</span></a></li> --}}
     
-<li class="nav-item"><a class="d-flex align-items-center" href="{{ url('/') }}" id="logout-app"><i data-feather="log-out"></i><span class="menu-title text-truncate" data-i18n="Logout">Logout</span></a></li>
+<li class="nav-item"><a class="d-flex align-items-center" href="#" id="logout-app"><i data-feather="log-out"></i><span class="menu-title text-truncate" data-i18n="Logout">Logout</span></a></li>
 <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br><br />
 <li class="nav-item">
     <a class="d-flex align-items-center" href="#">
