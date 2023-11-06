@@ -2,7 +2,9 @@
 
 @section('menu')
 <li class="nav-item {{ request()->is('/admin') ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ url('/admin') }}"><i data-feather="home"></i><span class="menu-title text-truncate" data-i18n="Dashboard">Dashboard</span></a></li>
+@can ('Operator')
 <li class="nav-item {{ request()->is('/admin/permintaan') ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ url('/admin/permintaan') }}"><i data-feather="list"></i><span class="menu-title text-truncate" data-i18n="Permintaan">Permintaan</span></a></li>
+@endcan
 <li class="nav-item">
     <a class="d-flex align-items-center" href="#"><i data-feather="database"></i><span class="menu-title text-truncate" data-i18n="Master Data">Master Data</span></a>
     <ul class="menu-content">
@@ -26,6 +28,7 @@
         </li>
     </ul>
 </li>
+@can('Operator')
 <li class="nav-item">
     <a class="d-flex align-items-center" href="#"><i data-feather="refresh-cw"></i><span class="menu-title text-truncate" data-i18n="Transaksi">Transaksi</span></a>
     <ul class="menu-content">
@@ -43,6 +46,7 @@
         </li>
     </ul>
 </li>
+@endcan
 <li class="nav-item">
     <a class="d-flex align-items-center" href="#"><i data-feather="folder"></i><span class="menu-title text-truncate" data-i18n="Laporan">Laporan</span></a>
     <ul class="menu-content">
