@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +15,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 // Superadmin //
+Route::get('/login', [AuthController::class, 'login']);
+
 Route::get('/admin', function () {
     return view('Superadmin/index');
 });
@@ -49,9 +52,9 @@ Route::get('/admin/permintaan/view', function () {
     return view('Permintaan/view');
 });
 
-Route::get('/', function () {
-    return view('login/index');
-});
+// Route::get('/', function () {
+//     return view('login/index');
+// });
 
 
 // Barang Masuk
