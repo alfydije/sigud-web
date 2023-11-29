@@ -51,6 +51,8 @@
         </table>
             </div>
         </div>
+            </div>
+        </div>
     </div>
 
     <!-- Modal Tambah/Edit -->

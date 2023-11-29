@@ -119,10 +119,10 @@
             headers: {
                 'X-CSRF-TOKEN': csrfToken,
             },  // data to submit
-            success: function (data, status, xhr) {
+            success: function (response, status, xhr) {
                 document.getElementById("brandId").value = itemId;
                 document.getElementById("nomor").value = itemId;
-                document.getElementById("namaBrand").value = data.data.nama_brand;
+                document.getElementById("namaBrand").value = response.data.nama_brand;
                 console.log(data);
             },
             error: function (jqXhr, textStatus, errorMessage) {
@@ -224,7 +224,12 @@
                             }
                         });
                     },
+                    // error: function (jqXhr, textStatus, errorMessage) {
+                    //     $('p').append('Error' + errorMessage);
+                    // }
                 });
+                    // Lakukan tindakan penghapusan di sini, seperti mengirim permintaan ke server atau menghapus dari data Anda.
+                    // Anda dapat menambahkan kode di sini untuk menghapus item dengan ID yang sesuai.
                     // Swal.fire('Berhasil!', 'Item berhasil dihapus', 'success');
                 }
             });
