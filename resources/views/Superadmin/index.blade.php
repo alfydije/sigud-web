@@ -14,12 +14,12 @@
     <div class="col-xl-12 col-md-12 col-12">
         <div class="card card-statistics px-0">
             <div class="card-header d-block px-2">
-                <h4 class="card-title">Selamat Datang, {{ Auth::user()->username ?? '' }}</h4>
+                <h4 class="card-title">Selamat Datang{{ Auth::user()->username ?? '' }}</h4>
                 <span class="card-subtitle text-gray">Informasi Dashboard</span>
             </div>
             <div class="card-body statistics-body">
                 <div class="row justify-content-center">
-                    <div class="col-xl-2 col-sm-6 col-12 mb-3">
+                    <div class="col-xl-3 col-sm-6 col-12 mb-0">
                         <div class="d-flex flex-row">
                             <div class="avatar bg-light-primary me-2">
                                 <div class="avatar-content">
@@ -45,7 +45,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-xl-2 col-sm-6 col-12 mb-3">
+                    <div class="col-xl-3 col-sm-6 col-12 mb-0">
                         <div class="d-flex flex-row">
                             <div class="avatar bg-light-primary me-2">
                                 <div class="avatar-content">
@@ -58,7 +58,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-xl-2 col-sm-6 col-12 mb-3">
+                    <div class="col-xl-3 col-sm-6 col-12 mb-0">
                         <div class="d-flex flex-row">
                             <div class="avatar bg-light-primary me-2">
                                 <div class="avatar-content">

@@ -8,16 +8,28 @@
 <li class="nav-item">
     <a class="d-flex align-items-center" href="#"><i data-feather="database"></i><span class="menu-title text-truncate" data-i18n="Master Data">Master Data</span></a>
     <ul class="menu-content">
-        <li class="nav-item {{ request()->routeIs('/admin/brand') ? 'active' : '' }}">
-            <a class="d-flex align-items-center" href="{{ url('/admin/brand') }}">
+        <li class="nav-item {{ request()->routeIs('/brand') ? 'active' : '' }}">
+            <a class="d-flex align-items-center" href="{{ url('/brand') }}">
                 <i class="far fa-circle"></i> <!-- Ini adalah ikon berbentuk lingkaran -->
                 <span class="menu-title text-truncate" data-i18n="Jenis">Brand</span>
             </a>
         </li>
-        <li class="nav-item {{ request()->routeIs('/admin/kategori') ? 'active' : '' }}">
-            <a class="d-flex align-items-center" href="{{ url('/admin/kategori') }}">
+        <li class="nav-item {{ request()->routeIs('/kategori') ? 'active' : '' }}">
+            <a class="d-flex align-items-center" href="{{ url('/kategori') }}">
                 <i class="far fa-circle"></i> <!-- Ini adalah ikon berbentuk lingkaran -->
                 <span class="menu-title text-truncate" data-i18n="Jenis">Kategori</span>
+            </a>
+        </li>
+        <li class="nav-item {{ request()->routeIs('/barang') ? 'active' : '' }}">
+            <a class="d-flex align-items-center" href="{{ url('/barang') }}">
+                <i class="far fa-circle"></i> <!-- Ini adalah ikon berbentuk lingkaran -->
+                <span class="menu-title text-truncate" data-i18n="Jenis">Barang</span>
+            </a>
+        </li>
+        <li class="nav-item {{ request()->routeIs('/supplier') ? 'active' : '' }}">
+            <a class="d-flex align-items-center" href="{{ url('/supplier') }}">
+                <i class="far fa-circle"></i> <!-- Ini adalah ikon berbentuk lingkaran -->
+                <span class="menu-title text-truncate" data-i18n="Jenis">Supplier</span>
             </a>
         </li>
         <li class="nav-item {{ request()->routeIs('/admin/pengguna') ? 'active' : '' }}">
@@ -25,6 +37,18 @@
                 <i class="far fa-circle"></i> <!-- Ini adalah ikon berbentuk lingkaran -->
                 <span class="menu-title text-truncate" data-i18n="Jenis">Pengguna</span>
             </a>
+            <ul class="nav-item {{ request()->routeIs('/admin/operator') ? 'active' : '' }}">
+                <a class="d-flex align-items-center" href="{{ url('/admin/operator') }}">
+                    <i class=""></i> <!-- Ini adalah ikon berbentuk lingkaran -->
+                    <span class="menu-title text-truncate" data-i18n="Jenis">Operator</span>
+                </a>
+            </ul>
+            <ul class="nav-item {{ request()->routeIs('/admin/client') ? 'active' : '' }}">
+                <a class="d-flex align-items-center" href="{{ url('/admin/client') }}">
+                    <i class=""></i> <!-- Ini adalah ikon berbentuk lingkaran -->
+                    <span class="menu-title text-truncate" data-i18n="Jenis">Client</span>
+                </a>
+            </ul>
         </li>
     </ul>
 </li>

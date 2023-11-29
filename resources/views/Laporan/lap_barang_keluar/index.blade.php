@@ -63,6 +63,8 @@
 </div>
 
 <div class="table-responsive text-nowrap">
+    <div class="col-xl-11 col-md-11 col-11">
+        <div class="card card-statistics px-0">
     <table class="table text-center">
         <thead>
             <tr>
@@ -111,6 +113,8 @@
 
         </tbody>
     </table>
+        </div>
+    </div>
 </div>
 
 <script>

@@ -26,38 +26,58 @@
                 <th class="text-center">Nama Brand</th>
                 <th class="text-center">Actions</th>
             </tr>
+
         </thead>
         <tbody class="table-border-bottom-0">
+
+            @if (!empty($brandData))
+            @foreach ($brandData as $item)
             <tr>
-                <td class="text-center"><i class="ti ti-brand-angular ti-lg text-danger me-3"></i> <strong>001</strong></td>
-                <td class="text-center">Hermes</td>
                 <td class="text-center">
-                    <a href="javascript:void(0);" class="btn btn-warning btn-edit" data-id="1" data-nama="Hermes"><i class="fa fa-pen"></i></a>
-                    <a href="javascript:void(0);" class="btn btn-danger btn-delete" data-id="1"><i class="fa fa-trash"></i></a>
+                    <i class="ti ti-brand-angular ti-lg text-danger me-3"></i>
+                    <strong>{{ $loop->iteration }}</strong>
+                </td>
+                <td class="text-center">{{ $item['nama_brand'] }}</td>
+                <td class="text-center">
+                    <a href="javascript:void(0);" class="btn btn-warning btn-edit" data-toogle="modal"
+                        data-id="{{ $item['id'] }}" data-nama="{{ $item['nama_brand'] }}"><i class="fa fa-pen"></i></a>
+                    <a href="javascript:void(0);" class="btn btn-danger btn-delete" data-id="{{ $item['id'] }}"><i
+                            class="fa fa-trash"></i></a>
                 </td>
             </tr>
+            @endforeach
+            @else
+            <tr>
+                <td colspan="3" class="text-center">No data available</td>
+            </tr>
+            @endif
             <!-- Tambahkan data lain di sini sesuai kebutuhan -->
         </tbody>
     </table>
 </div>
 
-<!-- Modal Tambah/Edit -->
-<div class="modal fade" id="modaltambah" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<!-- Modal Tambah/ -->
+<div class="modal fade" id="modaltambah" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <h1 class="modal-title fs-5" id="modalTitle">Form Tambah Data Brand</h1> <!-- Judul modal dengan ID -->
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
+
             <div class="modal-body">
-                <form method="" action="">
+                <form method="POST" action="/brand" id="brandForm">
+                    @csrf
+                    <input type="hidden" id="brandId" name="brand_id">
+                    @method('PUT')
                     <div class="mb-3">
                         <label for="nomor" class="form-label">Nomor</label>
-                        <input type="text" class="form-control" id="nomor" placeholder="">
+                        <input type="text" class="form-control" id="nomor" name="nomor" placeholder="">
                     </div>
                     <div class="mb-3">
                         <label for="namaBrand" class="form-label">Nama Brand</label>
-                        <input type="text" class="form-control" id="namaBrand" placeholder="">
+                        <input type="text" class="form-control" id="namaBrand" name="namaBrand" placeholder="">
                     </div>
                 </form>
             </div>
@@ -70,57 +90,53 @@
 </div>
 
 <script>
-var editMode = false; // Variabel untuk menyimpan status edit atau tambah
-var editItemId = null; // Variabel untuk menyimpan ID item yang akan di-edit
-
-// Event handler saat tombol "Edit" ditekan
-document.addEventListener("click", function (e) {
-    if (e.target && e.target.classList.contains("btn-edit")) {
+    var editMode = false; // Variabel untuk menyimpan status edit atau tambah
+    var editItemId = null; // Variabel untuk menyimpan ID item yang akan di-edit
+    // Event handler saat tombol "Edit" ditekan
+    document.addEventListener("click", function (e) {
+        if (e.target && e.target.classList.contains("btn-edit")) {
+            var itemId = e.target.getAttribute("data-id");
+            var namaBrand = e.target.getAttribute("data-nama"); // Mengambil atribut data-nama
+            showEditModal(itemId);
+        }
+    });
+    //fungsi untuk menampilkan modal edit
+    function showEditModal(itemId) {
         editMode = true; // Setel mode ke edit
-        var itemId = e.target.getAttribute("data-id");
         editItemId = itemId; // Simpan ID item yang akan di-edit
-        var namaBrand = e.target.getAttribute("data-nama"); // Mengambil atribut data-nama
-
-        // Isi modal dengan data yang sesuai untuk pengeditan
-        document.getElementById("nomor").value = itemId;
-        document.getElementById("namaBrand").value = namaBrand;
-
+        document.getElementById("brandId").value = itemId; // Setel nilai input hidden untuk ID brand
         // Ubah teks judul modal
-        document.getElementById("modalTitle").textContent = "Edit Data Brand"; // Mengganti judul sesuai mode
-
+        document.getElementById("modalTitle").textContent = "Edit Data Brand";
         // Tampilkan modal untuk pengeditan
         var modal = new bootstrap.Modal(document.getElementById("modaltambah"));
+        var csrfToken = document.head.querySelector('meta[name="_token"]').content;
         modal.show();
-    }
-});
-
-// Event handler saat tombol "Tambah Data" ditekan
-document.getElementById("btnSave").addEventListener("click", function () {
-    if (editMode) {
-        Swal.fire({
-            title: 'Konfirmasi Edit',
-            text: 'Apakah Anda yakin ingin menyimpan perubahan?',
-            icon: 'question',
-            showCancelButton: true,
-            confirmButtonText: 'Simpan',
-            cancelButtonText: 'Batal',
-            customClass: {
-                confirmButton: 'btn btn-primary',
-                cancelButton: 'btn btn-secondary ms-1'
+        // Buat permintaan Ajax untuk mengambil data dari API
+        $.ajax('/brand/show', {
+            type: 'GET',
+            dataType: 'json',
+            data: { id: itemId },
+            headers: {
+                'X-CSRF-TOKEN': csrfToken,
+            },  // data to submit
+            success: function (data, status, xhr) {
+                document.getElementById("brandId").value = itemId;
+                document.getElementById("nomor").value = itemId;
+                document.getElementById("namaBrand").value = data.data.nama_brand;
+                console.log(data);
             },
-            buttonsStyling: false
-        }).then(function (result) {
-            if (result.isConfirmed) {
-                // Lakukan tindakan pengeditan di sini, seperti mengirim permintaan ke server dengan editItemId
-                // Anda juga dapat menambahkan kode untuk meng-update item dengan ID yang sesuai
-                editMode = false; // Kembalikan mode ke tambah
-                editItemId = null; // Reset editItemId
-                Swal.fire('Berhasil!', 'Data berhasil disimpan', 'success');
-            } else if (result.dismiss === Swal.DismissReason.cancel) {
-                Swal.fire('Batal', 'Perubahan dibatalkan', 'error');
+            error: function (jqXhr, textStatus, errorMessage) {
+                $('p').append('Error' + errorMessage);
             }
         });
-    } else {
+    }
+    // Event handler saat tombol "Tambah Data" ditekan
+    document.getElementById("btnSave").addEventListener("click", function () {
+        var nomor = document.getElementById("nomor").value;
+        var namaBrand = document.getElementById("namaBrand").value;
+        var csrfToken = document.head.querySelector('meta[name="_token"]').content;
+        var apiUrl = editMode ? '/brand/' + editItemId : '/brand';
+        // var task = editMode ? '' + editItemId : '/brand';
         Swal.fire({
             title: 'Konfirmasi Simpan',
             text: 'Apakah Anda yakin ingin menyimpan data ini?',
@@ -135,43 +151,85 @@ document.getElementById("btnSave").addEventListener("click", function () {
             buttonsStyling: false
         }).then(function (result) {
             if (result.isConfirmed) {
+                $.ajax(apiUrl, {
+                    type: 'POST',
+                    dataType: 'json',
+                    data: { namaBrand: namaBrand },
+                    headers: {
+                        'X-CSRF-TOKEN': csrfToken,
+                    },  // data to submit
+                    success: function (data, status, xhr) {
+                        console.log(status);
+                        Swal.fire({
+                            title: 'Berhasil',
+                            text: 'data berhasil disimpan',
+                            icon: 'success',
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                location.reload();
+                            }
+                        });
+                    },
+                    error: function (jqXhr, textStatus, errorMessage) {
+                        $('p').append('Error' + errorMessage);
+                    }
+                });
                 // Lakukan tindakan penambahan data baru di sini
                 document.getElementById("nomor").value = "";
                 document.getElementById("namaBrand").value = "";
                 editMode = false; // Kembalikan mode ke tambah
                 editItemId = null; // Reset editItemId
-                Swal.fire('Berhasil!', 'Data berhasil disimpan', 'success');
             } else if (result.dismiss === Swal.DismissReason.cancel) {
                 Swal.fire('Batal', 'Penambahan data dibatalkan', 'error');
             }
         });
-    }
-});
-
-document.addEventListener("click", function (e) {
-  if (e.target && e.target.classList.contains("btn-delete")) {
-    var itemId = e.target.getAttribute("data-id");
-    Swal.fire({
-      title: 'Konfirmasi Hapus',
-      text: `Apakah Anda yakin ingin menghapus item dengan ID ${itemId}?`,
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonText: 'Hapus',
-      customClass: {
-        confirmButton: 'btn btn-danger',
-        cancelButton: 'btn btn-secondary ms-1'
-      },
-      buttonsStyling: false
-    }).then(function (result) {
-      if (result.isConfirmed) {
-        // Lakukan tindakan penghapusan di sini, seperti mengirim permintaan ke server atau menghapus dari data Anda.
-        // Anda dapat menambahkan kode di sini untuk menghapus item dengan ID yang sesuai.
-        Swal.fire('Berhasil!', 'Item berhasil dihapus', 'success');
-      }
     });
-  }
-});
+    document.addEventListener("click", function (e) {
+        if (e.target && e.target.classList.contains("btn-delete")) {
+            var itemId = e.target.getAttribute("data-id");
+            var namaBrand = e.target.getAttribute("data-nama"); // Mengambil atribut data-nama
+            var csrfToken = document.head.querySelector('meta[name="_token"]').content;
 
+            
+
+            Swal.fire({
+                title: 'Konfirmasi Hapus',
+                text: `Apakah Anda yakin ingin menghapus item dengan ID ${itemId}?`,
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Hapus',
+                customClass: {
+                    confirmButton: 'btn btn-danger',
+                    cancelButton: 'btn btn-secondary ms-1'
+                },
+                buttonsStyling: false
+            }).then(function (result) {
+                if (result.isConfirmed) {
+                    $.ajax('/brand/delete', {
+                    type: 'POST',
+                    dataType: 'json',
+                    data: { id: itemId },
+                    headers: {
+                        'X-CSRF-TOKEN': csrfToken,
+                    },  // data to submit
+                    success: function (data, status, xhr) {
+                        console.log(status);
+                        Swal.fire({
+                            title: 'Berhasil',
+                            text: 'data berhasil disimpan',
+                            icon: 'success',
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                location.reload();
+                            }
+                        });
+                    },
+                });
+                    // Swal.fire('Berhasil!', 'Item berhasil dihapus', 'success');
+                }
+            });
+        }
+    });
 </script>
 
 @endsection

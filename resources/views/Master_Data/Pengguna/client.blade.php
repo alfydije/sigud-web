@@ -5,7 +5,7 @@
     <div class="content-header-left col-md-9 col-12 mb-2">
         <div class="row breadcrumbs-top">
             <div class="col-12">
-                <h4 class="content-header-title mb-0">Barang Keluar</h4>
+                <h4 class="content-header-title mb-0">Master Data / Client</h4>
             </div>
         </div>
     </div>
@@ -13,25 +13,44 @@
 
 <!-- Basic table -->
 {{-- <div class="card"> --}}
+    <div class="card-header">
+        <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#modaltambah">
+            Tambah Data
+        </button>
+    </div>
     <div class="col-xl-11 col-md-11 col-11">
         <div class="card card-statistics px-0">
     <table class="table text-center">
-        <thead>
-            <tr>
-                <th class="text-center">No</th>
-                <th class="text-center">Nama Barang</th>
-                <th class="text-center">Actions</th>
-            </tr>
-        </thead>
-        <tbody class="table-border-bottom-0">
-            <tr>
-                <td class="text-center">001</td>
-                <td class="text-center">Hermes</td>
-                <td class="text-center">
-                    <a href="javascript:void(0);" class="btn btn-warning btn-edit" data-id="1" data-nama="Hermes"><i class="fa fa-pen"></i></a>
-                    <a href="javascript:void(0);" class="btn btn-danger btn-delete" data-id="1"><i class="fa fa-trash"></i></a>
-                </td>
-            </tr>
+            <thead>
+                <tr>
+                    <th class="text-center">No</th>
+                    <th class="text-center">Username</th>
+                    <th class="text-center">Nama Pengguna</th>
+                    <th class="text-center">No Hp</th>
+                    <th class="text-center">Gambar</th>
+                    <th class="text-center">Action</th>
+                </tr>
+            </thead>
+            <tbody class="table-border-bottom-0">
+                @if (!empty($nama_supplier))
+                @foreach ($nama_supplier as $item)
+                <tr>
+                    <td class="text-center">{{ $loop->iteration }}</td>
+                    <td class="text-center">{{$item ['nama_supplier']}}</td>
+                    {{-- <td class="text-center">Cindy</td>
+                    <td class="text-center">1234567</td>
+                    <td class="text-center">Peminjam</td> --}}
+                    <td class="text-center">
+                        <a href="javascript:void(0);" class="btn btn-warning btn-edit" data-id="1" data-nama="Cindy"><i class="fa fa-pen"></i></a>
+                        <a href="javascript:void(0);" class="btn btn-danger btn-delete" data-id="1"><i class="fa fa-trash"></i></a>
+                    </td>
+                </tr>
+                @endforeach
+                @else
+                <tr>
+                    <td colspan="6" class="text-center">No data available</td>
+                </tr>
+                @endif
             <!-- Tambahkan data lain di sini sesuai kebutuhan -->
         </tbody>
     </table>
@@ -44,37 +63,37 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="modalTitle">Form Tambah Data Barang Keluar</h1> <!-- Judul modal dengan ID -->
+                <h1 class="modal-title fs-5" id="modalTitle">Form Tambah Data Pengguna</h1> <!-- Judul modal dengan ID -->
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form method="" action="">
-                    <div class="mb-3">
-                        <label for="nomor" class="form-label">Serial Number</label>
-                        <input type="text" class="form-control" id="nomor" placeholder="">
-                    </div>
-                    <div class="mb-3">
-                        <label for="kategori" class="form-label">Kategori</label>
-                        <input type="text" class="form-control" id="kategori" placeholder="">
-                    </div>
-                    <div class="mb-3">
-                        <label for="brand" class="form-label">Brand</label>
-                        <input type="text" class="form-control" id="brand" placeholder="">
-                    </div>
-                    <div class="mb-3">
-                        <label for="namaBarang" class="form-label">Nama Barang</label>
-                        <input type="text" class="form-control" id="namaBarang" placeholder="">
-                    </div>
-                    <div class="mb-5">
-                        <label for="formFile" class="form-label">Tambah Gambar</label>
-                        <input class="form-control" type="file" id="formFile" disabled>
-                    </div>
-                </form>
-            </div>
-            
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                <button type="button" class="btn btn-primary" id="btnSave">Simpan</button>
+                    <form method="" action="">
+                        <div class="mb-3">
+                            <label for="no" class="form-label">No</label>
+                            <input type="text" class="form-control" id="no" placeholder="">
+                        </div>
+                        <div class="mb-3">
+                            <label for="role" class="form-label">Username</label>
+                            <input type="text" class="form-control" id="role" placeholder="">
+                        </div>
+                        <div class="mb-3">
+                            <label for="namaPengguna" class="form-label">Nama Pengguna</label>
+                            <input type="text" class="form-control" id="namaPengguna" placeholder="">
+                        </div>
+                        <div class="mb-3">
+                            <label for="role" class="form-label">No Hp</label>
+                            <input type="text" class="form-control" id="role" placeholder="">
+                        </div>
+                        <div class="mb-5">
+                            <label for="formFile" class="form-label">Tambah Gambar</label>
+                            <input class="form-control" type="file" id="formFile" disabled>
+                        </div>
+                        
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                    <button type="button" class="btn btn-primary" id="btnSave">Simpan</button>
             </div>
         </div>
     </div>
@@ -146,13 +165,13 @@ document.addEventListener("click", function (e) {
         var namaBarangValue = "Ambil nilai nama barang sesuai ID"; // Ganti dengan nilai nama barang yang sesuai
 
         // Isi modal dengan data yang sesuai untuk pengeditan
-        document.getElementById("nomor").value = itemId;
-        document.getElementById("kategori").value = kategoriValue;
-        document.getElementById("brand").value = brandValue;
-        document.getElementById("namaBarang").value = namaBarangValue;
+        document.getElementById("no").value = itemId;
+        document.getElementById("namaPengguna").value = kategoriValue;
+        document.getElementById("password").value = brandValue;
+        document.getElementById("role").value = namaBarangValue;
 
         // Ubah teks judul modal
-        document.getElementById("modalTitle").textContent = "Edit Data Barang Keluar"; // Mengganti judul sesuai mode
+        document.getElementById("modalTitle").textContent = "Data Pengguna"; // Mengganti judul sesuai mode
 
         // Tampilkan modal untuk pengeditan
         var modal = new bootstrap.Modal(document.getElementById("modaltambah"));
@@ -160,27 +179,27 @@ document.addEventListener("click", function (e) {
     }
 });
 document.addEventListener("click", function (e) {
-  if (e.target && e.target.classList.contains("btn-delete")) {
+if (e.target && e.target.classList.contains("btn-delete")) {
     var itemId = e.target.getAttribute("data-id");
     Swal.fire({
-      title: 'Konfirmasi Hapus',
-      text: `Apakah Anda yakin ingin menghapus item dengan ID ${itemId}?`,
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonText: 'Hapus',
-      customClass: {
+    title: 'Konfirmasi Hapus',
+    text: `Apakah Anda yakin ingin menghapus item dengan ID ${itemId}?`,
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonText: 'Hapus',
+    customClass: {
         confirmButton: 'btn btn-danger',
         cancelButton: 'btn btn-secondary ms-1'
-      },
-      buttonsStyling: false
+    },
+    buttonsStyling: false
     }).then(function (result) {
-      if (result.isConfirmed) {
+    if (result.isConfirmed) {
         // Lakukan tindakan penghapusan di sini, seperti mengirim permintaan ke server atau menghapus dari data Anda.
         // Anda dapat menambahkan kode di sini untuk menghapus item dengan ID yang sesuai.
         Swal.fire('Berhasil!', 'Item berhasil dihapus', 'success');
-      }
+    }
     });
-  }
+}
 });
 
 </script>

@@ -18,34 +18,39 @@
                 Tambah Data
             </button>
         </div>
-
-        <table class="table text-center">
+        <div class="col-xl-11 col-md-11 col-11">
+            <div class="card card-statistics px-0 table-responsive text-nowrap">
+        <table class="table text-center dt-responsive nowrap" style="border-collapse: collapse">
             <thead>
                 <tr>
-                    <th class="text-center">Serial Number</th>
-                    <th class="text-center">Kategori </th>
-
-                    <th class="text-center"> Brand</th>
-                    <th class="text-center"> Nama Barang</th>
-                    <th class="text-center"> Gambar</th>
-                    <th class="text-center">Actions</th>
+                    <th> Nama Barang</th>
+                    <th> Nama Supplier</th>
+                    <th> Keterangan</th>
+                    <th> Kuantity</th>
+                    <th> Kode barang</th>
+                    <th> Serial Number</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody class="table-border-bottom-0">
+                @if (!empty($))
                 <tr>
-                    <td class="text-center"><i class="ti ti-brand-angular ti-lg text-danger me-3"></i> <strong>001</strong></td>
-                    <td class="text-center">Hermes</td>
-                    <td class="text-center">Hermes</td>
-                    <td class="text-center">CPU</td>
-                    <td class="text-center">Hermes</td>
+                    <td class="text-center">Oppo</td>
+                    <td class="text-center">A</td>
+                    <td class="text-center">Aman</td>
+                    <td class="text-center">23</td>
+                    <td class="text-center">2A</td>                    
+                    <td class="text-center">212</td>                    
                     <td class="text-center">
-                        <a href="javascript:void(0);" class="btn btn-warning btn-edit" data-id="1" data-nama="Hermes"><i class="fa fa-pen"></i></a>
-                        <a href="javascript:void(0);" class="btn btn-danger btn-delete" data-id="1"><i class="fa fa-trash"></i></a>
+                        <a href="javascript:void(0);" class="btn btn-warning btn-edit" data-id="" data-nama=""><i class="fa fa-pen"></i></a>
+                        <a href="javascript:void(0);" class="btn btn-danger btn-delete" data-id=""><i class="fa fa-trash"></i></a>
                     </td>
                 </tr>
                 <!-- Tambahkan data lain di sini sesuai kebutuhan -->
             </tbody>
         </table>
+            </div>
+        </div>
     </div>
 
     <!-- Modal Tambah/Edit -->
@@ -57,7 +62,51 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form method="" action="">
+                <form method="POST" action="">
+                    @csrf
+                    <div class="form-group mb-1">
+                        <label for="barang_id" class="form-label">Nama Barang</label>
+                        <select class="form-select" name="nama_barang" aria-label="Default select example">
+                            <option disabled selected>Pilih Barang</option>
+                            {{-- @foreach ($type as $item)
+                                <option value="{{ $item->id }}" {{ old('type_section', '') == $item->id ? 'selected' : '' }}>
+                                    {{ $item->type_name }}
+                                </option>
+                            @endforeach --}}
+                        </select>
+                    </div>
+                    <div class="form-group mb-1">
+                        <!-- Input Supplier -->
+                        <label for="nama_supplier" class="form-label">Nama Supplier</label>
+                        <input class="form-control" type="text" id="nama_supplier" name="nama_supplier">
+                        </select>
+                    </div>
+                    <div class="form-group mb-1">
+                        <!-- Input Keterangan -->
+                        <label class="form-label" for="keterangan">Keterangan:</label>
+                        <input class="form-control" type="text" id="keterangan" name="keterangan">
+                    </div>
+                    <div class="form-group mb-1">
+                        <!-- Input Kuantiti -->
+                        <label class="form-label" for="kuantiti">Kuantiti:</label>
+                        <input class="form-control" type="number" id="kuantiti" name="kuantiti">
+                    </div>
+                    <div class="form-group mb-1">
+                        <!-- Input Detail Barang -->
+                        <label class="form-label" for="kode_barang">Kode Barang:</label>
+                        <input class="form-control" type="text" id="kode_barang" name="kode_barang[]">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="serial_number">Serial Number:</label>
+                        <div class="input-group mb-1">
+                            <input class="form-control" type="text" id="serial_number" name="serial_number[]">
+                            <button type="button" class="btn btn-secondary" id="add_more">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+                {{-- <form method="" action="">
                     <div class="mb-3">
                         <label for="nomor" class="form-label">Serial Number</label>
                         <div class="input-group">
@@ -84,7 +133,7 @@
                         <label for="formFile" class="form-label">Tambah Gambar</label>
                         <input class="form-control" type="file" id="formFile" disabled>
                     </div>
-                </form>
+                </form> --}}
             </div>
 
             <div class="modal-footer">
@@ -94,6 +143,31 @@
         </div>
     </div>
 </div>
+
+<script>
+    document.addEventListener('click', function(event) {
+        if (event.target.classList.contains('remove-field')) {
+            event.target.closest('.form-group').remove();
+        }
+    });
+
+    document.getElementById('add_more').addEventListener('click', function() {
+        const inputDiv = document.createElement('div');
+        inputDiv.className = 'form-group'; // Adding form-group class to dynamically added div
+        inputDiv.innerHTML = `
+        
+            <label class="form-label" for="serial_number">Serial Number:</label>
+            <div class="input-group mb-1">
+                <input class="form-control" type="text" name="serial_number[]">
+                <button type="button" class="btn btn-secondary remove-field">
+                    <i class="fas fa-minus"></i>
+                </button>
+            </div>
+        `;
+        document.querySelector('form').appendChild(inputDiv);
+    });
+</script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/quagga/0.12.1/quagga.min.js"></script>
     <script>
     var editMode = false; // Variabel untuk menyimpan status edit atau tambah

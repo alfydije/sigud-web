@@ -18,7 +18,8 @@
                 Tambah Data
             </button>
         </div>
-
+        <div class="col-xl-11 col-md-11 col-11">
+        <div class="card card-statistics px-0">
         <table class="table text-center">
             <thead>
                 <tr>
@@ -28,36 +29,44 @@
                 </tr>
             </thead>
             <tbody class="table-border-bottom-0">
+            @if (!empty($nama_kategori))
+            @foreach ($nama_kategori as $item)
                 <tr>
-                    <td class="text-center"><i class="ti ti-Kategori-angular ti-lg text-danger me-3"></i> <strong>001</strong></td>
-                    <td class="text-center">Hermes</td>
+                    <td class="text-center">{{ $loop->iteration }}</td>   
+                    <td class="text-center">{{ $item['nama_kategori'] }}</td>
                     <td class="text-center">
-                        <a href="javascript:void(0);" class="btn btn-warning btn-edit" data-id="1" data-nama="Hermes"><i class="fa fa-pen"></i></a>
-                        <a href="javascript:void(0);" class="btn btn-danger btn-delete" data-id="1"><i class="fa fa-trash"></i></a>
-                    </td>
+                        <a href="javascript:void(0);" class="btn btn-warning btn-edit" data-toogle="modal" data-id="{{ $item['id'] }}" data-nama="{{ $item['nama_kategori'] }}"><i class="fa fa-pen"></i></a>
+                        <a href="javascript:void(0);" class="btn btn-danger btn-delete" data-id="{{ $item['id'] }}"><i
+                            class="fa fa-trash"></i></a>                    </td>
                 </tr>
-                <!-- Tambahkan data lain di sini sesuai kebutuhan -->
-            </tbody>
+            @endforeach
+             @else
+            <tr>
+                <td colspan="3" class="text-center">No data available</td>
+            </tr>
+        @endif
+            </tbody>            
         </table>
+        </div>
+        </div>
     </div>
-
+   
+    
     <!-- Modal Tambah/Edit -->
     <div class="modal fade" id="modaltambah" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="modalTitle">Form Tambah Data Kategori</h1> <!-- Judul modal dengan ID -->
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <h1 class="modal-title fs-5" id="modalTitle">Form Tambah Data Kategori</h1>
                 </div>
                 <div class="modal-body">
-                    <form method="" action="">
+                    <form method="post" action="{{ url('http://192.168.18.9:8000/api/kategori')}}">
+                        @csrf
+                        <input type="hidden" id="id" name="id">
+                        @method('POST')
                         <div class="mb-3">
-                            <label for="nomor" class="form-label">Nomor</label>
-                            <input type="text" class="form-control" id="nomor" placeholder="">
-                        </div>
-                        <div class="mb-3">
-                            <label for="namaKategori" class="form-label">Nama Kategori</label>
-                            <input type="text" class="form-control" id="namaKategori" placeholder="">
+                            <label for="nama_kategori" class="form-label">Nama Kategori</label>
+                            <input type="text" class="form-control" id="nama_kategori" name="nama_kategori" placeholder="">
                         </div>
                     </form>
                 </div>
@@ -70,108 +79,203 @@
     </div>
 
     <script>
-    var editMode = false; // Variabel untuk menyimpan status edit atau tambah
-    var editItemId = null; // Variabel untuk menyimpan ID item yang akan di-edit
-
-    // Event handler saat tombol "Edit" ditekan
-    document.addEventListener("click", function (e) {
-        if (e.target && e.target.classList.contains("btn-edit")) {
-            editMode = true; // Setel mode ke edit
-            var itemId = e.target.getAttribute("data-id");
-            editItemId = itemId; // Simpan ID item yang akan di-edit
-            var namaKategori = e.target.getAttribute("data-nama"); // Mengambil atribut data-nama
-
-            // Isi modal dengan data yang sesuai untuk pengeditan
-            document.getElementById("nomor").value = itemId;
-            document.getElementById("namaKategori").value = namaKategori;
-
-            // Ubah teks judul modal
-            document.getElementById("modalTitle").textContent = "Edit Data Kategori"; // Mengganti judul sesuai mode
-
-            // Tampilkan modal untuk pengeditan
-            var modal = new bootstrap.Modal(document.getElementById("modaltambah"));
-            modal.show();
-        }
-    });
-
-    // Event handler saat tombol "Tambah Data" ditekan
-    document.getElementById("btnSave").addEventListener("click", function () {
-        if (editMode) {
-            Swal.fire({
-                title: 'Konfirmasi Edit',
-                text: 'Apakah Anda yakin ingin menyimpan perubahan?',
-                icon: 'question',
-                showCancelButton: true,
-                confirmButtonText: 'Simpan',
-                cancelButtonText: 'Batal',
-                customClass: {
-                    confirmButton: 'btn btn-primary',
-                    cancelButton: 'btn btn-secondary ms-1'
-                },
-                buttonsStyling: false
-            }).then(function (result) {
-                if (result.isConfirmed) {
-                    // Lakukan tindakan pengeditan di sini, seperti mengirim permintaan ke server dengan editItemId
-                    // Anda juga dapat menambahkan kode untuk meng-update item dengan ID yang sesuai
-                    editMode = false; // Kembalikan mode ke tambah
-                    editItemId = null; // Reset editItemId
-                    Swal.fire('Berhasil!', 'Data berhasil disimpan', 'success');
-                } else if (result.dismiss === Swal.DismissReason.cancel) {
-                    Swal.fire('Batal', 'Perubahan dibatalkan', 'error');
-                }
-            });
-        } else {
-            Swal.fire({
-                title: 'Konfirmasi Simpan',
-                text: 'Apakah Anda yakin ingin menyimpan data ini?',
-                icon: 'question',
-                showCancelButton: true,
-                confirmButtonText: 'Simpan',
-                cancelButtonText: 'Batal',
-                customClass: {
-                    confirmButton: 'btn btn-primary',
-                    cancelButton: 'btn btn-secondary ms-1'
-                },
-                buttonsStyling: false
-            }).then(function (result) {
-                if (result.isConfirmed) {
-                    // Lakukan tindakan penambahan data baru di sini
-                    document.getElementById("nomor").value = "";
-                    document.getElementById("namaKategori").value = "";
-                    editMode = false; // Kembalikan mode ke tambah
-                    editItemId = null; // Reset editItemId
-                    Swal.fire('Berhasil!', 'Data berhasil disimpan', 'success');
-                } else if (result.dismiss === Swal.DismissReason.cancel) {
-                    Swal.fire('Batal', 'Penambahan data dibatalkan', 'error');
-                }
-            });
-        }
-    });
-
-    document.addEventListener("click", function (e) {
-    if (e.target && e.target.classList.contains("btn-delete")) {
-        var itemId = e.target.getAttribute("data-id");
-        Swal.fire({
-        title: 'Konfirmasi Hapus',
-        text: `Apakah Anda yakin ingin menghapus item dengan ID ${itemId}?`,
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonText: 'Hapus',
-        customClass: {
-            confirmButton: 'btn btn-danger',
-            cancelButton: 'btn btn-secondary ms-1'
-        },
-        buttonsStyling: false
-        }).then(function (result) {
-        if (result.isConfirmed) {
-            // Lakukan tindakan penghapusan di sini, seperti mengirim permintaan ke server atau menghapus dari data Anda.
-            // Anda dapat menambahkan kode di sini untuk menghapus item dengan ID yang sesuai.
-            Swal.fire('Berhasil!', 'Item berhasil dihapus', 'success');
-        }
+        var editMode = false; 
+        var editItemId = null; 
+    
+        
+        document.addEventListener("click", function (e) {
+            if (e.target && e.target.classList.contains("btn-edit")) {
+                var itemId = e.target.getAttribute("data-id");
+                var nama_kategori = e.target.getAttribute("data-nama"); 
+                showEditModal(itemId);
+            }
         });
+    // Function untuk manggil Modal edit *ini PENTING
+    function showEditModal(itemId) {
+        editMode = true; 
+        editItemId = itemId; 
+        document.getElementById("id").value = itemId; 
+    
+        document.getElementById("modalTitle").textContent = "Edit Data Kategori";
+        
+        var modal = new bootstrap.Modal(document.getElementById("modaltambah"));
+        var csrfToken = document.head.querySelector('meta[name="_token"]').content;
+        modal.show();
+        $.ajax('/kategori/show', {
+   type: 'GET',  
+   dataType:'json',
+   data: { id: itemId },
+   headers: {
+               
+               'X-CSRF-TOKEN': csrfToken,        
+           },  
+   success: function (response, status, xhr) {
+    // id diambil dari id form
+    document.getElementById("id").value = itemId; 
+    document.getElementById("nama_kategori").value = response.data.nama_kategori;
+               
+           
+   },
+   error: function (jqXhr, textStatus, errorMessage) {
+           $('p').append('Error' + errorMessage);
+   }
+});
     }
+
+        
+      
+
+    document.getElementById("btnSave").addEventListener("click", function () {
+        itemId = document.getElementById("id").value;
+       var nama_kategori = document.getElementById("nama_kategori").value;
+       var csrfToken = document.head.querySelector('meta[name="_token"]').content;
+       var apiUrl = editMode ? '/kategori/' + itemId : '/kategori';
+       
+
+       Swal.fire({
+               title: 'Konfirmasi Simpan',
+               text: 'Apakah Anda yakin ingin menyimpan data ini?',
+               icon: 'question',
+               showCancelButton: true,
+               confirmButtonText: 'Simpan',
+               cancelButtonText: 'Batal',
+               customClass: {
+                   confirmButton: 'btn btn-primary',
+                   cancelButton: 'btn btn-secondary ms-1'
+               },
+               buttonsStyling: false
+           }).then(function (result) {
+               if (result.isConfirmed) {
+    $.ajax(apiUrl, {
+   type: 'POST',  
+   dataType:'json',
+   data: { namaKategori: nama_kategori },
+   headers: {
+               
+               'X-CSRF-TOKEN': csrfToken,        
+           },  // data to submit
+   success: function (data, status, xhr) {
+      console.log(status);
+               Swal.fire({
+                   title: 'Berhasil',
+                   text: 'data berhasil disimpan',
+                   icon: 'success',
+               }).then((result) => {
+                   if (result.isConfirmed) {
+                       location.reload();
+                   }
+               });
+           
+   },
+   error: function (jqXhr, textStatus, errorMessage) {
+           $('p').append('Error' + errorMessage);
+   }
+});
+                   // Lakukan tindakan penambahan data baru di sini
+                   document.getElementById("nama_kategori").value = "";
+                   editMode = false; // Kembalikan mode ke tambah
+                   editItemId = null; // Reset editItemId
+               } else if (result.dismiss === Swal.DismissReason.cancel) {
+                   Swal.fire('Batal', 'Penambahan data dibatalkan', 'error');
+               }
+           });
+
+});
+// document.addEventListener("click", function (e) {
+//         if (e.target && e.target.classList.contains("btn-delete")) {
+//             var itemId = document.getElementById("id").value;
+//             var nama_kategori = document.getElementById("nama_kategori").value;
+//             var csrfToken = document.head.querySelector('meta[name="_token"]').content;
+
+//             Swal.fire({
+//                 title: 'Konfirmasi Hapus',
+//                 text: `Apakah Anda yakin ingin menghapus item dengan ID ${itemId}?`,
+//                 icon: 'warning',
+//                 showCancelButton: true,
+//                 confirmButtonText: 'Hapus',
+//                 customClass: {
+//                     confirmButton: 'btn btn-danger',
+//                     cancelButton: 'btn btn-secondary ms-1'
+//                 },
+//                 buttonsStyling: false
+//             }).then(function (result) {
+//                 if (result.isConfirmed) {
+//                    $.ajax('/kategori/delete', {
+//                     type: 'POST',
+//                     dataType: 'json',
+//                     data: { id: itemId },
+//                     headers: {
+//                         'X-CSRF-TOKEN': csrfToken,
+//                     },  // data to submit
+//                     success: function (response, status, xhr) {
+//                         console.log(status);
+//                         Swal.fire({
+//                             title: 'Berhasil',
+//                             text: 'data berhasil disimpan',
+//                             icon: 'success',
+//                         }).then((result) => {
+//                             if (result.isConfirmed) {
+//                                 location.reload();
+//                             }
+//                         });
+//                     },
+//                 });
+                    
+//                     // Swal.fire('Berhasil!', 'Item berhasil dihapus', 'success');
+//                 }
+//             });
+//         }
+//     });
+document.addEventListener("click", function (e) {
+        if (e.target && e.target.classList.contains("btn-delete")) {
+            var itemId = e.target.getAttribute("data-id");
+            var nama_kategori = e.target.getAttribute("nama_kategori"); // Mengambil atribut data-nama
+            var csrfToken = document.head.querySelector('meta[name="_token"]').content;
+
+            
+
+            Swal.fire({
+                title: 'Konfirmasi Hapus',
+                text: `Apakah Anda yakin ingin menghapus item dengan ID ${itemId}?`,
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Hapus',
+                customClass: {
+                    confirmButton: 'btn btn-danger',
+                    cancelButton: 'btn btn-secondary ms-1'
+                },
+                buttonsStyling: false
+            }).then(function (result) {
+                if (result.isConfirmed) {
+                    $.ajax('/kategori/delete', {
+                    type: 'POST',
+                    dataType: 'json',
+                    data: { id: itemId },
+                    headers: {
+                        'X-CSRF-TOKEN': csrfToken,
+                    },  // data to submit
+                    success: function (data, status, xhr) {
+                        console.log(status);
+                        Swal.fire({
+                            title: 'Berhasil',
+                            text: 'data berhasil disimpan',
+                            icon: 'success',
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                location.reload();
+                            }
+                        });
+                    },
+                });
+                    // Swal.fire('Berhasil!', 'Item berhasil dihapus', 'success');
+                }
+            });
+        }
     });
+
+      
 
     </script>
+   
 
     @endsection

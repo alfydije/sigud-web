@@ -5,7 +5,7 @@
     <div class="content-header-left col-md-9 col-12 mb-2">
         <div class="row breadcrumbs-top">
             <div class="col-12">
-                <h4 class="content-header-title mb-0">Barang Keluar</h4>
+                <h4 class="content-header-title mb-0">Barang</h4>
             </div>
         </div>
     </div>
@@ -18,20 +18,46 @@
     <table class="table text-center">
         <thead>
             <tr>
+                
                 <th class="text-center">No</th>
+                <th class="text-center">Kategori</th>
+                <th class="text-center">Brand</th>
                 <th class="text-center">Nama Barang</th>
+                <th class="text-center">Gambar</th>
                 <th class="text-center">Actions</th>
             </tr>
         </thead>
         <tbody class="table-border-bottom-0">
-            <tr>
-                <td class="text-center">001</td>
-                <td class="text-center">Hermes</td>
+            @if (!empty($barang))
+            @foreach ($barang as $item)
+                <tr>
+                    <td class="text-center">{{ $loop->iteration }}</td>   
+                    <td class="text-center">{{ $item['kategori'] }}</td>
+                    <td class="text-center">{{ $item['brand'] }}</td>
+                    <td class="text-center">{{ $item['nama_barang'] }}</td>
+                    <td class="text-center">{{ $item['gambar_barang'] }}</td>
+
+
+                     <td class="text-center">
+                        <a href="javascript:void(0);" class="btn btn-warning btn-edit" data-id="" data-nama=""><i class="fa fa-pen"></i></a>
+                        <a href="javascript:void(0);" class="btn btn-danger btn-delete" data-id=""><i class="fa fa-trash"></i></a>
+                    </td>
+                </tr>
+            @endforeach
+             @else
+       
+        @endif
+            {{-- <tr>
+               
+                <td class="text-center">Elektronik</td>
+                <td class="text-center">A</td>
+                <td class="text-center">Freezer</td>
+                <td class="text-center">1034.Jpg</td>
                 <td class="text-center">
                     <a href="javascript:void(0);" class="btn btn-warning btn-edit" data-id="1" data-nama="Hermes"><i class="fa fa-pen"></i></a>
                     <a href="javascript:void(0);" class="btn btn-danger btn-delete" data-id="1"><i class="fa fa-trash"></i></a>
                 </td>
-            </tr>
+            </tr> --}}
             <!-- Tambahkan data lain di sini sesuai kebutuhan -->
         </tbody>
     </table>
@@ -49,10 +75,7 @@
             </div>
             <div class="modal-body">
                 <form method="" action="">
-                    <div class="mb-3">
-                        <label for="nomor" class="form-label">Serial Number</label>
-                        <input type="text" class="form-control" id="nomor" placeholder="">
-                    </div>
+                    
                     <div class="mb-3">
                         <label for="kategori" class="form-label">Kategori</label>
                         <input type="text" class="form-control" id="kategori" placeholder="">
@@ -164,7 +187,7 @@ document.addEventListener("click", function (e) {
     var itemId = e.target.getAttribute("data-id");
     Swal.fire({
       title: 'Konfirmasi Hapus',
-      text: `Apakah Anda yakin ingin menghapus item dengan ID ${itemId}?`,
+      text: Apakah Anda yakin ingin menghapus item dengan ID ${itemId}?,
       icon: 'warning',
       showCancelButton: true,
       confirmButtonText: 'Hapus',
